@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35806.99 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokDex", "PokDex.csproj", "{C8920732-B32F-47B9-9459-AAF4EA3ED829}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C8920732-B32F-47B9-9459-AAF4EA3ED829}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8920732-B32F-47B9-9459-AAF4EA3ED829}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8920732-B32F-47B9-9459-AAF4EA3ED829}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8920732-B32F-47B9-9459-AAF4EA3ED829}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C2745EFE-7836-40B2-9DE9-7DBE54209BF0}
+	EndGlobalSection
+EndGlobal
