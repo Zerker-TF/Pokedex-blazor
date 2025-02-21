@@ -20,7 +20,6 @@ img{
     align-items:center;
 }
 
-
 .card {
     display: grid;
     grid-template-columns: 320px 300px 300px;
@@ -70,7 +69,6 @@ img{
     align-items: center;
 }
 
-
 .stats-head {
     grid-column:1;
     grid-row:1;
@@ -109,18 +107,21 @@ img{
     align-items: center;
     margin-bottom: 10px;
 }
+
 .pokemon-type {
     grid-row: 1;
     justify-content: space-around;
     align-items: center;
     margin-bottom: 10px;
 }
+
 .pokemon-hw {
     grid-row:2;
     justify-content: space-around;
     align-items: center;
     margin-bottom: 10px;
 }
+
 .card-top{
 
     display:flex;
@@ -129,7 +130,6 @@ img{
     align-items:center;
     border-radius:15px;
 }
-
 
 .stat {
     text-transform: capitalize;
@@ -142,8 +142,6 @@ img{
     margin-bottom: 5px;
 }
 
-
-
 .type-badge {
     padding: 5px;
     padding-left: 10px;
@@ -155,11 +153,23 @@ img{
     margin-right: 3px;
 }
 
-
 .poke-icon {
     width: 50px;
     height: 50px;
     margin-right: 10px;
 }
 
+.Poke-entry {
+    grid-row: 3;
+    grid-column: 2 / 4;
+    align-items: center;
+    background-color: white;
+    border: 4px solid #5a5a5a;
+    box-shadow: 0 0 10px #c6c3d6;
+    padding: 20px;
+    border-radius: 10px;
+    color:black;
+    font-size: 1.2em;
+    text-align:left;
+}
 

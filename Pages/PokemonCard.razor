@@ -1,4 +1,5 @@
 ﻿@page "/pokemon/{PokemonId}"
+@using PokDex.Models
 @using Util
 @inject PokeClient client
 @using Pokedex.Models
@@ -67,7 +68,7 @@
 				</div>
 
 				<div class="pokemon-hw">
-					<h5>height: @PokeUtil.GetPokemonHeightInMeters(pokemon.height) m</h5>
+					<h5>Height: @PokeUtil.GetPokemonHeightInMeters(pokemon.height) m</h5>
 					<h5>Weight: @PokeUtil.GetPokemonWeightInKilograms(@pokemon.weight) kg</h5>
 				</div>
 
@@ -97,9 +98,12 @@
 		</div>
 
 		<div class="Poke-entry">
-
+			@if (pokemonSpecies != null)
+			{
+				<p>@PokeUtil.GetRandomFlavorText(pokemonSpecies.flavor_text_entries)</p>	
+			}
 		</div>
-		
+
 	</div>
 
 </div>
@@ -109,10 +113,17 @@
 
 	public string PokemonId { get; set; } = "";
 
+
 	Pokemon pokemon = new Pokemon();
+	PokemonSpecies pokemonSpecies = new PokemonSpecies();
+
 
 	protected async override Task OnInitializedAsync()
 	{
 		pokemon = await client.GetPokemon(PokemonId);
+		pokemonSpecies = await client.GetPokemonEntry(PokemonId);
 	}
+
+	
+
 }
