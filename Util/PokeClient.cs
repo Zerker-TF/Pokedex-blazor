@@ -1,4 +1,5 @@
-﻿using Pokedex.Models;
+﻿using PokDex.Models;
+using Pokedex.Models;
 using System.Text.Json;
 
 namespace PokDex.Util
@@ -17,7 +18,14 @@ namespace PokDex.Util
             var response = await this.client.GetAsync($"https://pokeapi.co/api/v2/pokemon/{id}");
             var content = await response.Content.ReadAsStringAsync();
 
-            return JsonSerializer.Deserialize<Pokemon>(content);
+            return JsonSerializer.Deserialize<Pokemon>(content) ?? new Pokemon();
+        }
+
+        public async Task<PokemonSpecies> GetPokemonEntry(string id)
+        {
+            var response = await this.client.GetAsync($"https://pokeapi.co/api/v2/pokemon-species/{id}");
+            var content = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<PokemonSpecies>(content) ?? new PokemonSpecies();
         }
     }
 }

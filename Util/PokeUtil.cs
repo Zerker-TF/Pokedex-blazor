@@ -1,4 +1,6 @@
-﻿namespace PokDex.Util
+﻿using PokDex.Models;
+
+namespace PokDex.Util
 {
 
     public static class PokeUtil
@@ -25,6 +27,18 @@
         public static double GetPokemonWeightInKilograms(int weight)
         {
             return Convert.ToDouble(weight) / 10;
+        }
+
+        public static string GetRandomFlavorText(List<FlavorTextEntry> entries)
+        {
+            var enEntries = entries.Where(e => e.language?.name == "en").ToList();
+            if (enEntries.Count == 0)
+            {
+                return "No description available";
+            }
+            var random = new Random();
+            int index = random.Next(enEntries.Count);
+            return enEntries[index].flavor_text;
         }
     }
 }
