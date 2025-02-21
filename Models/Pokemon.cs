@@ -14,7 +14,7 @@ namespace Pokedex.Models
         public Sprites sprites { get; set; } = new Sprites();
         public List<Stat> stats { get; set; } = new List<Stat>();
         public List<PokDex.Models.Type> types { get; set; } = new List<PokDex.Models.Type>();
-        public List<PkdEntry> Entry { get; set; } = new List<PkdEntry>();
-  
+        public List<FlavorTextEntry> flavor_text_entries { get; set; } = new List<FlavorTextEntry>();
+
     }
 }
