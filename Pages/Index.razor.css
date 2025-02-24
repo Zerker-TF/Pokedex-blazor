@@ -3,9 +3,9 @@
 }
 
 
-
 .container {
-    margin-top: 50px;
+    
+    margin-top: 180px;
     display: flex;
     flex-direction: column;
     
@@ -15,30 +15,77 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 50px;
+    gap: 60px;
     justify-content: center;
     align-items: center;
+    height:600px; /* de esta forma solo muestra 9 pokemons*/
+    overflow-y: auto;
+    padding-top:20px; /* se me recortaba el efecto del hover sino en la primera fila*/
 }
 
 .pokemon-card {
-    width: 300px;
-    height: 300px;
+    position:relative;
+    display:flex;
+    flex-direction:row;
+    width: 350px;
+    height: 150px;
     padding: 10px;
-    background-color:#FFF;
+    background-color:whitesmoke;
     align-items: center;
-    text-align: center;
+    text-align: left;
     border-radius: 10px;
+    border:5px solid black;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s, box-shadow 0.3s
+ }
+
+.pokemon-card::before{
+    content:"";
+    position:absolute;
+    top:-3px;
+    left:-3px;
+    right:-3px;
+    bottom:-3px;
+    border: 4px solid orange;
+    border-radius:10px;
+    pointer-events:none;
+}
+
+.pokemon-card:hover{
+    transform: scale(1.09);
+    box-shadow: 0 0 20px rgba(0,0,0,0.50);
+}
+
+.pokemon-info{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+/*flex: a b c
+    a= refiere a flex-grow, 0 indica que no crece para llenar el espacio disponible
+    b= refiere a flex-shrink, 0 indica que no se va a achicar para entrar en donde este contenido
+    c= refiere a flex-basis, el valor indica el tamaño inicial antes de achicar o agrandar.
+*/
+
+.pokemon-sprite{
+    image-rendering:pixelated;
+    flex:0 0 180px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
 img {
-    width: 80%;
-    height: 60%;
+    width: 350%;
+    height: auto;
 }
 
 .type-row {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
+    gap:5px;
 }
 
 .pokemon-name {

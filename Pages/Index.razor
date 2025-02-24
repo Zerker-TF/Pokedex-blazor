@@ -3,39 +3,61 @@
 @using Pokedex.Models
 @using Util
 @inject PokeClient client
+@inject DexRegion DexRegion
 
 <div class="container" >
-	<img src="/img/Pok-Dex-logo.png" alt="app-title" class="app-title"/>
-	
+
+	@* <img src="/img/Pok-Dex-logo.png" alt="app-title" class="app-title"/> *@
+
 	<div>
-		
+		<div class="Pokemon-region">
+			<select @onchange="OnRegionChange">
+				@foreach(var region in DexRegion.Regiones)
+				{
+					<option value="@region.Key">@region.Value.Name</option>
+					 
+				}
+			</select>
+		</div>
 		<div class="pokemon-row">
-			@foreach (var pokemon in pokemonList)
+			@* // es un loop que pasa por todos los pokemon en la pokemonList y los va mostrando en la pagina. *@
+			@foreach (var pokemon in filteredPokemonList)
 			{
+				// generamos un hiper vinculo para poder acceder a la informacion de cada pokemon individualmente.
+
 				<a href="/pokemon/@pokemon.id">
+
 					<div class="pokemon-card">
-						<img src="@pokemon.sprites.front_default" alt="Pokemon Sprite">
 
-						<h4 class="pokemon-name">#@pokemon.id @pokemon.name</h4>
+						<div class="pokemon-info">
 
-						<div class="type-row">
-							@foreach (var type in pokemon.types)
-							{
-								<span class="type-badge" style="background-color: @PokeColor.GetTypeColor(@type.type.name)">@type.type.name</span>
-								//muestra el tipo de pokemon y si tiene mas de un tipo busca el 2do y lo muestra tambien.
-							}
+							<h4 class="pokemon-name">#@pokemon.id @pokemon.name</h4>
+
+							<div class="type-row">
+								@foreach (var type in pokemon.types)
+								{
+									<span class="type-badge" style="background-color: @PokeColor.GetTypeColor(@type.type.name)">@type.type.name</span>
+									//muestra el tipo de pokemon y si tiene mas de un tipo busca el 2do y lo muestra tambien.
+								}
+							</div>
+						</div>
+
+						<div class="pokemon-sprite">
+							<img src="@pokemon.sprites.front_default" alt="Pokemon Sprite">
 						</div>
 					</div>
+
+
 				</a>
 			}
 		</div>
-		
+
 	</div>
 
-  </div>
+</div>
 
 
- 
+
 
 
 
@@ -44,16 +66,34 @@
 	Pokemon pokemon = new Pokemon();
 
 	List<Pokemon> pokemonList = new List<Pokemon>();
+	private string selectedRegion = "all";
+	private List<int> allPokemonIds = Enumerable.Range(1, 1025).ToList(); // lista con todos los pokemons
+	private List<int> filteredPokemonIds = new List<int>();
+	private List<Pokemon> filteredPokemonList = new List<Pokemon>();
 
 	protected override async Task OnInitializedAsync()
 	{
 		//pokemon = await client.GetPokemon("1"); this grabs the pokemon name 
 
-		for (int i = 1; i < 152; i++)
+		for (int i = 1; i < 1025; i++)
 		{
-			pokemonList.Add(await client.GetPokemon(i.ToString())); // i represents the pokemon id
+			pokemonList.Add(await client.GetPokemon(i.ToString())); // i representa el pokemon id
 			StateHasChanged();
 		}
+		FilterPokemonList();
+	}
 
+	private void FilterPokemonList()
+	{
+		filteredPokemonIds = DexRegion.FilterRegion(selectedRegion, allPokemonIds);
+		filteredPokemonList = pokemonList.Where(p => filteredPokemonIds.Contains(p.id)).ToList();
+		StateHasChanged();
+	}
+
+	private void OnRegionChange(ChangeEventArgs e)
+	{
+		selectedRegion = e.Value?.ToString() ?? "all";
+		Console.WriteLine($"Selected Region: {selectedRegion}");
+		FilterPokemonList();
 	}
 }
