@@ -8,6 +8,7 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+// Añado el servicio de PokeClient para poder hacer las query a la PokeAPI
 builder.Services.AddScoped<PokeClient>();
-
+builder.Services.AddScoped<DexRegion>();
 await builder.Build().RunAsync();
