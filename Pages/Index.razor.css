@@ -21,13 +21,18 @@
     height:600px; /* de esta forma solo muestra 9 pokemons*/
     overflow-y: auto;
     padding-top:20px; /* se me recortaba el efecto del hover sino en la primera fila*/
+
+}
+
+.Pokemon-region{
+    margin-right:190px;
 }
 
 .pokemon-card {
     position:relative;
     display:flex;
     flex-direction:row;
-    width: 350px;
+    width: 320px;
     height: 150px;
     padding: 10px;
     background-color:whitesmoke;
